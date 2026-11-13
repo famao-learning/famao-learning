@@ -1,0 +1,41 @@
+[
+  {
+    "title": "天净沙·秋思",
+    "author": "马致远",
+    "version": "当前 3:4 竖版示例",
+    "video": "videos/tian-jing-sha-qiu-si-3x4.mp4",
+    "preview": "previews/tian-jing-sha-qiu-si-3x4.gif",
+    "duration_seconds": 26.4,
+    "width": 1080,
+    "height": 1440,
+    "bytes": 20955356,
+    "preview_bytes": 2666050,
+    "sha256": "60cff2e35c1b48eb1765242d8b4f84924029a6322fa823d9301fa1399bb12ac3"
+  },
+  {
+    "title": "丁香结",
+    "author": "宗璞",
+    "version": "早期 16:9 横版示例（v6，情感女声）",
+    "video": "videos/ding-xiang-jie-16x9.mp4",
+    "preview": "previews/ding-xiang-jie-16x9.gif",
+    "duration_seconds": 22.2,
+    "width": 1920,
+    "height": 1080,
+    "bytes": 14180779,
+    "preview_bytes": 2358328,
+    "sha256": "a0fb14c1613c7dbc175e58e60ba879b41a6421509c468bd2ab83c28a05141a4e"
+  },
+  {
+    "title": "匆匆",
+    "author": "朱自清",
+    "version": "早期 16:9 横版示例（v3）",
+    "video": "videos/cong-cong-16x9.mp4",
+    "preview": "previews/cong-cong-16x9.gif",
+    "duration_seconds": 45.4,
+    "width": 1920,
+    "height": 1080,
+    "bytes": 36454836,
+    "preview_bytes": 2770790,
+    "sha256": "5218cef268dce7148e2bf26e616c3b3a551f8833653228612bad82429941bb27"
+  }
+]
