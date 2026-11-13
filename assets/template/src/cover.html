@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="zh"><head><meta charset="utf-8"><title>封面</title>
+<!-- 封面排字：大小错落的手写金句居中，左上角竖排小字，小字说明块，红印。?r=34 竖版 1080×1440，?r=43 横版 1440×1080 -->
+<style>
+  html, body { margin: 0; height: 100%; overflow: hidden; background: #08050a; }
+  #bg { position: absolute; inset: 0; background-size: cover; background-position: center; filter: saturate(.86) contrast(1.06) brightness(.9); }
+  .shade { position: absolute; inset: 0; }
+  .ch { position: absolute; font-family: "HanziPen SC", "Xingkai SC", "Kaiti SC", serif; font-weight: 700; line-height: 1; color: #fbf5e8; white-space: nowrap;
+        text-shadow: 0 0 3px rgba(8,2,8,.85), 0 6px 22px rgba(8,2,8,.75), 0 0 70px rgba(8,2,8,.55); transform-origin: 50% 60%; }
+  .ch.lead { color: #f1e6d0; }
+  .side { position: absolute; display: flex; flex-direction: row-reverse; gap: 14px; font-family: "Songti SC", "STSong", serif; font-weight: 600; color: #efe6d6;
+          text-shadow: 0 0 2px rgba(0,0,0,.9), 0 2px 10px rgba(0,0,0,.8); }
+  .side span { writing-mode: vertical-rl; }
+  .info { position: absolute; font-family: "Songti SC", "STSong", serif; font-weight: 700; color: #e9dfcd; line-height: 1.55;
+          text-shadow: 0 0 2px rgba(0,0,0,.9), 0 2px 10px rgba(0,0,0,.8); }
+  .info i { display: block; width: 2.4em; height: 2px; margin: .5em 0 .55em; background: rgba(233,223,205,.8); }
+  .seal { position: absolute; writing-mode: vertical-rl; background: #a9261c; color: #f9eadb; font: 700 34px/1.1 "Songti SC", "STSong", serif; letter-spacing: 3px;
+          padding: 10px 6px 8px; border-radius: 5px; box-shadow: 0 3px 12px rgba(0,0,0,.5), inset 0 0 0 2px rgba(249,234,219,.5); }
+
+  .r34 #bg { background-image: url(/out/cover/bg34.png); }
+  .r34 .shade { background: radial-gradient(ellipse 70% 42% at 58% 30%, rgba(10,3,12,.42), transparent 100%), linear-gradient(to bottom, rgba(8,3,8,.5), transparent 22%), linear-gradient(to top, rgba(8,3,5,.55), transparent 18%); }
+  .r34 .side { left: 74px; top: 118px; font-size: 27px; letter-spacing: 9px; }
+  .r34 .info { left: 76px; top: 560px; font-size: 22px; letter-spacing: 4px; }
+
+  .r43 #bg { background-image: url(/out/cover/bg43.png); }
+  .r43 .shade { background: radial-gradient(ellipse 60% 46% at 50% 26%, rgba(10,3,12,.45), transparent 100%), linear-gradient(to bottom, rgba(8,3,8,.5), transparent 24%), linear-gradient(to top, rgba(8,3,5,.5), transparent 16%); }
+  .r43 .side { left: 70px; top: 84px; font-size: 25px; letter-spacing: 8px; }
+  .r43 .info { left: 72px; top: 470px; font-size: 21px; letter-spacing: 4px; }
+</style></head>
+<body>
+<div id="bg"></div><div class="shade"></div>
+<div class="side"><span>枯藤老树昏鸦，</span><span>小桥流水人家，</span><span>古道西风瘦马。</span></div>
+<div class="info">马致远<i></i>天净沙 · 秋思<br>语文 七年级上册</div>
+<script>
+// 每个字 [字, x, y, 字号, 倾斜角, 是否引子]；坐标是字框左上角的像素
+const L = {
+  34: { chars: [['夕', 388, 128, 86, -3, 1], ['阳', 480, 136, 90, 2, 1], ['西', 578, 124, 82, -1, 1], ['下', 668, 134, 92, 3, 1],
+                ['断', 372, 232, 212, -3], ['肠', 578, 258, 184, 2],
+                ['人', 548, 418, 172, 1], ['在', 748, 468, 92, -4],
+                ['天', 380, 596, 208, 2], ['涯', 600, 574, 250, -2]],
+        seal: [872, 650] },
+  43: { chars: [['夕', 272, 92, 78, -3, 1], ['阳', 356, 100, 82, 2, 1], ['西', 446, 88, 76, -1, 1], ['下', 528, 98, 84, 3, 1],
+                ['断', 258, 190, 196, -3], ['肠', 450, 214, 170, 2], ['人', 626, 176, 206, 1], ['在', 828, 292, 90, -4],
+                ['天', 908, 168, 204, 2], ['涯', 1108, 150, 236, -2]],
+        seal: [1352, 250] },
+};
+// 标题字体：默认钟齐志莽行书（assets/fonts/）；?f= 可换成下面表里的其他字体做对比
+const FONTS = { zhimang: '/assets/fonts/ZhiMangXing-Regular.ttf', hanzipen: null };   // 想试别的字体：下载到 assets/fonts/ 后在这里加一项
+const QS = new URLSearchParams(location.search), FKEY = QS.get('f') || 'zhimang';
+if (FONTS[FKEY]) { const ff = new FontFace('CoverArt', `url(${FONTS[FKEY]})`); document.fonts.add(ff); ff.load();
+  document.head.insertAdjacentHTML('beforeend', '<style>.ch { font-family: "CoverArt", "Xingkai SC", serif; font-weight: 400; }</style>'); }
+const K = { zhimang: 1.2 }[FKEY] || 1;      // 各字体的字面大小不同，按字框中心放大补齐
+const r = QS.get('r') || '34', lay = L[r];
+document.body.className = 'r' + r;
+for (const [c, x, y, s, rot, lead] of lay.chars)
+  document.body.insertAdjacentHTML('beforeend', `<div class="ch${lead ? ' lead' : ''}" style="left:${(x - (K - 1) * s / 2).toFixed(1)}px;top:${(y - (K - 1) * s / 2).toFixed(1)}px;font-size:${(s * K).toFixed(1)}px;transform:rotate(${rot}deg)">${c}</div>`);
+document.body.insertAdjacentHTML('beforeend', `<div class="seal" style="left:${lay.seal[0]}px;top:${lay.seal[1]}px">秋思</div>`);
+</script>
+</body></html>

@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="zh">
+<head>
+<meta charset="utf-8">
+<title>匆匆</title>
+<style>
+  html, body { margin: 0; background: #05070b; overflow: hidden; }
+  #stage { position: relative; width: 1920px; height: 1080px; overflow: hidden; }
+  canvas { position: absolute; left: 0; top: 0; display: block; }
+  #title {
+    position: absolute; left: 0; right: 0; top: 58px; text-align: center;
+    font: 600 58px "Songti SC", "STSong", serif; letter-spacing: 14px; color: #f4efe6;
+    text-shadow: 0 2px 18px rgba(0,0,0,.75), 0 0 2px rgba(0,0,0,.6); opacity: 0;
+  }
+  #title .rule {
+    display: block; width: 120px; height: 1px; margin: 18px auto 0;
+    background: linear-gradient(90deg, transparent, rgba(216,190,235,.9), transparent);
+  }
+  #sub {
+    position: absolute; left: 0; right: 0; bottom: 92px; text-align: center;
+    font: 500 46px "PingFang SC", "Hiragino Sans GB", sans-serif; letter-spacing: 3px; color: #fff;
+    -webkit-text-stroke: 5px rgba(8,10,16,.82); paint-order: stroke fill;
+    text-shadow: 0 3px 14px rgba(0,0,0,.7); opacity: 0;
+  }
+  #credit {
+    position: absolute; right: 150px; bottom: 96px; font: 500 38px "Songti SC", "STSong", serif; letter-spacing: 4px;
+    color: #3a332c; opacity: 0;
+  }
+</style>
+<script type="importmap">
+{ "imports": {
+    "three": "/node_modules/three/build/three.module.js",
+    "three/addons/": "/node_modules/three/examples/jsm/"
+} }
+</script>
+</head>
+<body>
+<div id="stage">
+  <canvas id="c" width="1920" height="1080"></canvas>
+  <div id="title"><span id="titleText"></span><span class="rule"></span></div>
+  <div id="sub"></div>
+  <div id="credit"></div>
+</div>
+<script type="module" src="./main.js"></script>
+</body>
+</html>
